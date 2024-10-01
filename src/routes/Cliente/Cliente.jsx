@@ -9,8 +9,15 @@ const Cliente = () => {
   
   // Criando a função buscarCep
   
-  const buscarCep = () => {
-    
+  const buscarCep = (e) => {
+    const cep = e.target.value;
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+    .then((res) => res.json())
+    .then((dados) => {
+        setValue('rua', dados.logradouro);
+        setValue('bairro', dados.bairro);
+        setFocus('numero')
+    })
   }
 
   return (
